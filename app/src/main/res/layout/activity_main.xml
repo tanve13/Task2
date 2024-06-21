@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="@string/YES"
-            android:id="@+id/rbYES"
+            android:id="@+id/rbYes"
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold" />

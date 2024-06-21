@@ -20,6 +20,7 @@ class MainActivity3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main3)
+        Toast.makeText(this, "on create called", Toast.LENGTH_SHORT).show()
 
         name = findViewById(R.id.name)
         contact = findViewById(R.id.contact)
@@ -41,5 +42,10 @@ class MainActivity3 : AppCompatActivity() {
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(this, "on resume called", Toast.LENGTH_SHORT).show()
+
     }
 }

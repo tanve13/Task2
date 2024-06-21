@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     var etContactNumber: EditText?= null
     var button: Button?= null
-    var rbYES: RadioButton?= null
+    var rbYes: RadioButton?= null
     var rbNO: RadioButton?= null
     var etStudyField : EditText?= null
     var name: EditText?= null
@@ -28,19 +28,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-
-        }
-
         etContactNumber = findViewById(R.id.etContactNumber)
         name = findViewById(R.id.etName)
         college = findViewById(R.id.etCollege)
         email =findViewById(R.id.etEmail)
         button = findViewById(R.id.Button)
-        rbYES = findViewById(R.id.rbYES)
+        rbYes = findViewById(R.id.rbYes)
         rbNO = findViewById(R.id.rbNO)
         etStudyField = findViewById(R.id.etStudyField)
         rgStudy = findViewById(R.id.rgStudy)
@@ -56,17 +49,15 @@ class MainActivity : AppCompatActivity() {
                 etContactNumber?.error = "enter a valid 10-digits number"
             }else if((etContactNumber?.text?.toString()?.trim()?.get(0)?.toInt()?:0)<6){
                 etContactNumber?.error="enter a valid number"
-
-
             }  else if(email?.text?.toString()?.trim().isNullOrEmpty()){
                 email?.error = resources.getString(R.string.enter_your_email)
             } else if(rgStudy?.checkedRadioButtonId==-1){
                 Toast.makeText(this, "select option", Toast.LENGTH_SHORT).show()
-            } else if(rbYES?.isChecked==true && etStudyField?.text?.toString()?.trim().isNullOrEmpty()){
+            } else if(rbYes?.isChecked==true && etStudyField?.text?.toString()?.trim().isNullOrEmpty()){
                 etStudyField?.error = resources.getString(R.string.enter_your_field)
             } else  {
                 Toast.makeText(this, "Successfully submitted", Toast.LENGTH_SHORT).show()
-                var intent = Intent(this,secondactivity::class.java)
+                var intent = Intent(this,SecondActivity::class.java)
                 intent.putExtra("name",name?.text.toString().trim())
                 intent.putExtra("contactNumber",etContactNumber?.text.toString().trim())
                 startActivity(intent)
@@ -80,8 +71,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "saved successfully", Toast.LENGTH_SHORT).show()
             }
         }
-        rbYES?.setOnClickListener {}
-        rbYES?.setOnCheckedChangeListener { buttonView, isChecked ->
+        rbYes?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 etStudyField?.visibility = View.VISIBLE
             } else {
